@@ -547,3 +547,13 @@ button:hover {
   will-change: transform, opacity;
 
 }
+/* --- FORCE CAKE STACKING + SIZES (override any old rules) --- */
+.cake{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.cake .bottom{ width: 260px !important; }
+.cake .middle{ width: 210px !important; }
+.cake .top{    width: 160px !important; }
