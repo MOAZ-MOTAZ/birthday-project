@@ -72,7 +72,7 @@ button:hover {
 
 /* Make layers look more “cake-like” */
 .bottom {
-  width: 260px;
+  width: 170px;
   background: linear-gradient(180deg, #ffb3d9, #ff97c8);
 }
 
@@ -82,7 +82,7 @@ button:hover {
 }
 
 .top {
-  width: 170px;
+  width: 260px;
   background: linear-gradient(180deg, #ff8fc6, #ff68b0);
 }
 
@@ -545,4 +545,5 @@ button:hover {
 
 .sparkle {
   will-change: transform, opacity;
+
 }
