@@ -559,4 +559,41 @@ button:hover {
 .cake .bottom{ width: 260px !important; }
 .cake .middle{ width: 210px !important; }
 .cake .top{    width: 160px !important; }
+/* ===== Long Letter Readability ===== */
+
+.letter-box {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 30px 24px;
+}
+
+/* Better paragraph spacing */
+.letter-body p {
+  margin-bottom: 18px;
+}
+
+/* Comfortable line width */
+.letter-body {
+  line-height: 1.9;
+  font-size: 17px;
+  word-wrap: break-word;
+}
+@media (max-width: 600px) {
+
+  .letter-box {
+    width: 92%;
+    padding: 22px 18px;
+    margin: 20px auto;
+  }
+
+  .letter-body {
+    font-size: 18px;
+    line-height: 1.95;
+  }
+
+  .letter-body p {
+    margin-bottom: 20px;
+  }
+
+}
 
