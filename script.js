@@ -1,125 +1,167 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  const startBtn = document.getElementById("startBtn");
-  const welcome = document.getElementById("welcome");
-  const cakeSection = document.getElementById("cakeSection");
+  // ── Elements ──
+  const startBtn      = document.getElementById("startBtn");
+  const welcome       = document.getElementById("welcome");
+  const cakeSection   = document.getElementById("cakeSection");
   const letterSection = document.getElementById("letterSection");
-  const loader = document.getElementById("loader");
-
-// Hide loader after a short delay
-setTimeout(() => {
-  loader.classList.add("hidden");
-}, 1500);
-const musicBtn = document.getElementById("musicBtn");
-const musicPlayer = document.getElementById("musicPlayer");
-
-if (musicBtn && musicPlayer) {
-  musicBtn.addEventListener("click", () => {
-    musicPlayer.style.display = "block";
-    musicBtn.style.display = "none";
-  });
-}
-
-  const candles = document.querySelectorAll(".candle");
-  const sparklesWrap = document.getElementById("sparkles");
-  const confettiWrap = document.getElementById("confetti");
+  const loader        = document.getElementById("loader");
+  const musicBtn      = document.getElementById("musicBtn");
+  const musicPlayer   = document.getElementById("musicPlayer");
+  const sparklesWrap  = document.getElementById("sparkles");
+  const confettiWrap  = document.getElementById("confetti");
 
   let blownCount = 0;
-  const letterBox = document.getElementById("letterBox");
-const secret = document.getElementById("secretMessage");
 
-if (letterBox && secret) {
-  letterBox.addEventListener("click", () => {
-    secret.classList.add("show");
-  });
-}
+  // ── Loader ──
+  setTimeout(() => loader.classList.add("hidden"), 1600);
 
-  // ---------- Sparkles ----------
-function createSparkles(count = 24) {
-  sparklesWrap.innerHTML = "";
-
-  for (let i = 0; i < count; i++) {
-    const s = document.createElement("div");
-    s.className = "sparkle";
-
-    // Make ~30% of them hearts
-    if (Math.random() < 0.30) {
-  s.classList.add("heart");
-  const tip = document.createElement("span");
-  s.appendChild(tip);
-}
-    const size = Math.random() * 6 + 4;        // 4 - 10px
-    const x = Math.random() * 100;             // vw
-    const y = Math.random() * 100;             // vh
-    const duration = Math.random() * 10 + 12;  // 12 - 22s
-
-    s.style.setProperty("--s", `${size}px`);
-    s.style.setProperty("--x", `${x}vw`);
-    s.style.setProperty("--y", `${y}vh`);
-    s.style.setProperty("--d", `${duration}s`);
-    s.style.animationDelay = `${Math.random() * 8}s`;
-
-    sparklesWrap.appendChild(s);
+  // ── Music toggle ──
+  if (musicBtn && musicPlayer) {
+    musicBtn.addEventListener("click", () => {
+      musicPlayer.style.display = "block";
+      musicBtn.style.opacity    = "0";
+      musicBtn.style.pointerEvents = "none";
+      setTimeout(() => { musicBtn.style.display = "none"; }, 400);
+    });
   }
-}
 
-  createSparkles(14);
+  // ── Sparkles ──
+  function createSparkles(count = 20) {
+    sparklesWrap.innerHTML = "";
 
-  // ---------- Confetti ----------
-  function confettiBurst(pieces = 60) {
-    // Clear old pieces
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+
+      if (Math.random() < 0.30) {
+        s.classList.add("heart");
+        s.appendChild(document.createElement("span"));
+      }
+
+      const size     = Math.random() * 8 + 4;
+      const x        = Math.random() * 100;
+      const y        = Math.random() * 100;
+      const duration = Math.random() * 12 + 14;
+
+      s.style.setProperty("--s", `${size}px`);
+      s.style.setProperty("--x", `${x}vw`);
+      s.style.setProperty("--y", `${y}vh`);
+      s.style.setProperty("--d", `${duration}s`);
+      s.style.animationDelay = `${Math.random() * 10}s`;
+
+      sparklesWrap.appendChild(s);
+    }
+  }
+
+  createSparkles(18);
+
+  // ── Confetti burst ──
+  function confettiBurst(pieces = 70) {
     confettiWrap.innerHTML = "";
+
+    const colors = [
+      "#ffc6e0", "#e8b4f8", "#bde8ff",
+      "#fff5c2", "#c8f9e2", "#ffd6c0"
+    ];
 
     for (let i = 0; i < pieces; i++) {
       const c = document.createElement("div");
       c.className = "confetti";
 
-      const x = Math.random() * 100; // vw
-      const rot = Math.floor(Math.random() * 360);
-      const duration = Math.random() * 1.4 + 1.6; // 1.6 - 3.0s
+      const x        = Math.random() * 100;
+      const rot      = Math.floor(Math.random() * 360);
+      const duration = Math.random() * 1.8 + 1.6;
 
       c.style.setProperty("--x", `${x}vw`);
       c.style.setProperty("--r", `${rot}deg`);
       c.style.setProperty("--d", `${duration}s`);
+      c.style.background     = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDelay = `${Math.random() * 0.4}s`;
 
-      // soft pastel random colors
-      const colors = ["#ffd1e8", "#e8d4ff", "#cfefff", "#fff2c9", "#d7ffe7"];
-      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      // Some confetti as circles
+      if (Math.random() < 0.3) {
+        c.style.borderRadius = "50%";
+        c.style.width = c.style.height = "9px";
+      }
 
       confettiWrap.appendChild(c);
     }
 
-    // Cleanup after animation
-    setTimeout(() => {
-      confettiWrap.innerHTML = "";
-    }, 3200);
+    setTimeout(() => { confettiWrap.innerHTML = ""; }, 3800);
   }
 
-  // ---------- Transitions ----------
-  // Transition 1 → 2
+  // ── Section transitions ──
+  // Welcome → Cake
   startBtn.addEventListener("click", () => {
     welcome.classList.remove("active");
-    cakeSection.classList.add("active");
+
+    // Small delay for smooth out-animation
+    setTimeout(() => {
+      cakeSection.classList.add("active");
+    }, 200);
   });
 
-  // Candles logic (2 → 3)
+  // Cake (candles) → Letter
+  const candles = document.querySelectorAll(".candle");
+
   candles.forEach(candle => {
     candle.addEventListener("click", () => {
       const flame = candle.querySelector(".flame");
       if (!flame) return;
 
-      flame.remove();
+      // Puff-out animation
+      flame.style.transition = "transform 0.2s ease, opacity 0.25s ease";
+      flame.style.transform  = "translateX(-50%) scale(1.5)";
+      flame.style.opacity    = "0";
+
+      setTimeout(() => flame.remove(), 260);
       blownCount++;
 
+      // Mini sparkle at click position
+      sparkle(candle);
+
       if (blownCount === candles.length) {
-        confettiBurst(70);
+        confettiBurst(80);
 
         setTimeout(() => {
           cakeSection.classList.remove("active");
-          letterSection.classList.add("active");
+          setTimeout(() => {
+            letterSection.classList.add("active");
+          }, 200);
         }, 900);
       }
     });
   });
+
+  // Small local sparkle when a candle is blown
+  function sparkle(el) {
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 6; i++) {
+      const dot = document.createElement("div");
+      dot.style.cssText = `
+        position: fixed;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: hsl(${Math.random() * 60 + 330}, 90%, 70%);
+        left: ${rect.left + rect.width / 2}px;
+        top:  ${rect.top}px;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+        opacity: 1;
+      `;
+      document.body.appendChild(dot);
+
+      const angle  = Math.random() * Math.PI * 2;
+      const dist   = Math.random() * 60 + 30;
+      requestAnimationFrame(() => {
+        dot.style.transform = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist - 40}px)`;
+        dot.style.opacity   = "0";
+      });
+
+      setTimeout(() => dot.remove(), 700);
+    }
+  }
 
 });
