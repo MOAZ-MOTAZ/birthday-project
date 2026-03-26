@@ -1,93 +1,113 @@
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday, Mariam 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="loader">
-  <div class="loader-content">
-    <div class="loader-heart">💗</div>
-    <p>Preparing something for you...</p>
-  </div>
-</div>
-    <div id="sparkles" aria-hidden="true"></div>
-<div id="confetti" aria-hidden="true"></div>
 
-  <!-- SECTION 1 -->
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-petals">
+        <span>🌸</span><span>✨</span><span>🌸</span>
+      </div>
+      <p class="loader-text">Preparing something for you...</p>
+    </div>
+  </div>
+
+  <!-- AMBIENT BACKGROUND -->
+  <div id="orbs" aria-hidden="true">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <div id="sparkles" aria-hidden="true"></div>
+  <div id="confetti" aria-hidden="true"></div>
+
+  <!-- SECTION 1: Welcome -->
   <section id="welcome" class="section active">
-    <h1>Happy Birthday 🌸</h1>
-    <p>I made something for you...</p>
-    <button id="startBtn">Open</button>
+    <div class="welcome-inner">
+      <div class="petal-ring" aria-hidden="true">
+        <span>🌸</span><span>✨</span><span>🌸</span><span>💫</span>
+        <span>🌸</span><span>✨</span><span>🌸</span><span>💫</span>
+      </div>
+      <p class="eyebrow">for someone special</p>
+      <h1>Happy<br><em>Birthday</em></h1>
+      <p class="subtitle">I made something for you…</p>
+      <button id="startBtn">
+        <span class="btn-inner">Open <span class="btn-arrow">↓</span></span>
+      </button>
+    </div>
   </section>
 
-  <!-- SECTION 2 -->
+  <!-- SECTION 2: Cake -->
   <section id="cakeSection" class="section">
-    <h2>Make a wish and blow the candles ✨</h2>
-
-    <div class="cake">
-      <div class="layer top"></div>
-      <div class="layer middle"></div>
-      <div class="layer bottom"></div>
-
-      <div class="candles">
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
+    <div class="cake-wrapper">
+      <p class="cake-hint">Make a wish, then click each candle ✨</p>
+      <div class="cake">
+        <div class="candles">
+          <div class="candle"><div class="flame"><div class="flame-inner"></div></div><div class="wick"></div></div>
+          <div class="candle"><div class="flame"><div class="flame-inner"></div></div><div class="wick"></div></div>
+          <div class="candle"><div class="flame"><div class="flame-inner"></div></div><div class="wick"></div></div>
+        </div>
+        <div class="tier tier-top">
+          <div class="tier-gloss"></div>
+          <div class="tier-decor">🌸 🌸 🌸</div>
+        </div>
+        <div class="tier tier-mid">
+          <div class="tier-gloss"></div>
+          <div class="tier-decor">✨ 💕 ✨</div>
+        </div>
+        <div class="tier tier-bot">
+          <div class="tier-gloss"></div>
+          <div class="tier-decor">🌷 🌷 🌷 🌷</div>
+        </div>
+        <div class="cake-plate"></div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3 -->
+  <!-- SECTION 3: Letter -->
   <section id="letterSection" class="section">
-    <div class="letter-box">
-      <h2>💌 A Letter For You</h2>
-      <div class="music-section">
-  <button id="musicBtn" class="music-btn">
-    🎧 I picked a song for you
-  </button>
-
-  <div id="musicPlayer" class="music-player">
-    <!-- Replace the src later with the song you choose -->
-    <iframe
-      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3Fzlg5r1IjhLk2qRw667od?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      
-    </iframe>
-  </div>
-</div>
-
-<div class="letter-meta">
-  <span>October 20, 1:00 AM — the night we started talking</span>
-</div>
-
-<div class="letter-body">
-  <p>
-    <!-- WRITE YOUR LETTER HERE -->
-    This is where your heartfelt message will go...
-  </p>
-  <div class="signature">
-  <p>Happy Birthday,</p>
-  <p class="name">Mariam</p>
-</div>
-<div id="secretMessage" class="secret hidden">
-  
-</div>
-<p class="closing">
-  I’m really glad I got to know you.
-</p>
-</div>
-
-
+    <div class="letter-wrap">
+      <div class="letter-box">
+        <div class="letter-header">
+          <div class="header-deco">💌</div>
+          <h2>A Letter For You</h2>
+          <div class="divider"><span></span><span class="dot">✦</span><span></span></div>
+        </div>
+        <div class="music-section">
+          <button id="musicBtn" class="music-btn">
+            <span class="music-icon">🎧</span>
+            <span>I picked a song for you</span>
+          </button>
+          <div id="musicPlayer" class="music-player">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3Fzlg5r1IjhLk2qRw667od?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="letter-meta">
+          <span>October 20, 1:00 AM — the night we started talking</span>
+        </div>
+        <div class="letter-body">
+          <p>This is where your heartfelt message will go...</p>
+        </div>
+        <div class="signature">
+          <p class="sig-line">With love,</p>
+          <p class="name">Mariam</p>
+        </div>
+        <p class="closing">I'm really glad I got to know you. 🌸</p>
+      </div>
     </div>
   </section>
 
   <script src="script.js"></script>
 </body>
 </html>
-
 
 
